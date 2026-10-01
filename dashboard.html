@@ -1,0 +1,2096 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Admin | Ujian ASTS</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #fff7fb;
+            color: #18181b;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 255px;
+            height: 100vh;
+
+            background: linear-gradient(
+                180deg,
+                #ec4899,
+                #db2777,
+                #be185d
+            );
+
+            color: white;
+
+            padding: 25px 18px;
+
+            z-index: 100;
+
+            box-shadow:
+                8px 0 30px
+                rgba(190, 24, 93, .15);
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            padding:
+                5px 10px 30px;
+        }
+
+
+        .brand-logo {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,.2);
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            box-shadow:
+                inset 0 0 0 1px
+                rgba(255,255,255,.2);
+        }
+
+
+        .brand h2 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+
+        .brand p {
+            font-size: 10px;
+            opacity: .75;
+        }
+
+
+        .menu-title {
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            opacity: .6;
+
+            margin:
+                10px 12px;
+        }
+
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+
+        .menu a {
+            text-decoration: none;
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            padding:
+                13px 14px;
+
+            border-radius: 13px;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            transition: .3s;
+        }
+
+
+        .menu a:hover,
+        .menu a.active {
+            background:
+                rgba(255,255,255,.18);
+
+            transform:
+                translateX(4px);
+        }
+
+
+        .menu-icon {
+            width: 22px;
+
+            text-align: center;
+
+            font-size: 17px;
+        }
+
+
+        .logout {
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 18px;
+            right: 18px;
+        }
+
+
+        .logout button {
+            width: 100%;
+
+            border:
+                1px solid
+                rgba(255,255,255,.25);
+
+            background:
+                rgba(255,255,255,.1);
+
+            color: white;
+
+            padding: 13px;
+
+            border-radius: 13px;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: .3s;
+        }
+
+
+        .logout button:hover {
+            background: white;
+
+            color: #db2777;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .main {
+            margin-left: 255px;
+
+            min-height: 100vh;
+
+            padding: 30px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom: 30px;
+        }
+
+
+        .header-left h1 {
+            font-size: 28px;
+
+            font-weight: 800;
+        }
+
+
+        .header-left p {
+            color: #71717a;
+
+            font-size: 13px;
+
+            margin-top: 4px;
+        }
+
+
+        .admin-profile {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            background: white;
+
+            padding:
+                8px 13px 8px 8px;
+
+            border-radius: 50px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0,0,0,.05);
+        }
+
+
+        .admin-avatar {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            color: white;
+
+            font-weight: 700;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ec4899,
+                    #be185d
+                );
+        }
+
+
+        .admin-profile strong {
+            display: block;
+
+            font-size: 12px;
+        }
+
+
+        .admin-profile span {
+            display: block;
+
+            font-size: 10px;
+
+            color: #a1a1aa;
+        }
+
+
+        /* =========================
+           STAT CARDS
+        ========================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .stat-card {
+            position: relative;
+
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 20px;
+
+            border:
+                1px solid #fce7f3;
+
+            box-shadow:
+                0 10px 30px
+                rgba(190,24,93,.06);
+
+            overflow: hidden;
+
+            transition: .3s;
+
+            animation:
+                fadeUp .6s ease both;
+        }
+
+
+        .stat-card:hover {
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(190,24,93,.12);
+        }
+
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 14px;
+
+            background: #fce7f3;
+
+            color: #db2777;
+
+            font-size: 21px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .stat-card h3 {
+            font-size: 28px;
+
+            font-weight: 800;
+        }
+
+
+        .stat-card p {
+            color: #71717a;
+
+            font-size: 12px;
+
+            margin-top: 3px;
+        }
+
+
+        .stat-decoration {
+            position: absolute;
+
+            width: 90px;
+            height: 90px;
+
+            right: -30px;
+            top: -30px;
+
+            border-radius: 50%;
+
+            background: #fdf2f8;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .content-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.4fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .panel {
+            background: white;
+
+            border:
+                1px solid #fce7f3;
+
+            border-radius: 20px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 10px 30px
+                rgba(190,24,93,.05);
+
+            animation:
+                fadeUp .7s ease both;
+        }
+
+
+        .panel-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom: 20px;
+        }
+
+
+        .panel-header h2 {
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+
+        .panel-header span {
+            color: #db2777;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+
+            border-collapse:
+                collapse;
+        }
+
+
+        th {
+            text-align: left;
+
+            color: #a1a1aa;
+
+            font-size: 10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing: .5px;
+
+            padding: 10px;
+
+            border-bottom:
+                1px solid #f4f4f5;
+        }
+
+
+        td {
+            padding: 13px 10px;
+
+            font-size: 12px;
+
+            border-bottom:
+                1px solid #f4f4f5;
+        }
+
+
+        tbody tr {
+            transition: .2s;
+        }
+
+
+        tbody tr:hover {
+            background: #fff7fb;
+        }
+
+
+        .user-name {
+            font-weight: 600;
+        }
+
+
+        .gender {
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+
+        .male {
+            background: #eff6ff;
+
+            color: #2563eb;
+        }
+
+
+        .female {
+            background: #fdf2f8;
+
+            color: #db2777;
+        }
+
+
+        /* =========================
+           GENDER CHART
+        ========================= */
+
+        .gender-chart {
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                center;
+
+            gap: 25px;
+
+            padding:
+                15px 0 25px;
+        }
+
+
+        .circle-chart {
+            width: 135px;
+            height: 135px;
+
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    #ec4899 var(--female),
+                    #60a5fa 0
+                );
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .circle-inner {
+            width: 90px;
+            height: 90px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+        }
+
+
+        .circle-inner strong {
+            font-size: 20px;
+        }
+
+
+        .circle-inner span {
+            color: #a1a1aa;
+
+            font-size: 9px;
+        }
+
+
+        .legend {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+
+        .legend-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 11px;
+        }
+
+
+        .legend-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+        }
+
+
+        .dot-pink {
+            background: #ec4899;
+        }
+
+
+        .dot-blue {
+            background: #60a5fa;
+        }
+
+
+        /* =========================
+           WELCOME
+        ========================= */
+
+        .welcome {
+            margin-top: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ec4899,
+                    #be185d
+                );
+
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 35px
+                rgba(190,24,93,.2);
+        }
+
+
+        .welcome h2 {
+            font-size: 20px;
+
+            font-weight: 800;
+        }
+
+
+        .welcome p {
+            font-size: 12px;
+
+            opacity: .8;
+
+            margin-top: 5px;
+        }
+
+
+        .welcome-circle {
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+
+            right: -30px;
+            top: -70px;
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+            text-align: center;
+
+            padding: 30px !important;
+
+            color: #db2777;
+        }
+
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+
+            border: 3px solid #fce7f3;
+
+            border-top-color:
+                #db2777;
+
+            border-radius: 50%;
+
+            display: inline-block;
+
+            animation:
+                spin .8s linear infinite;
+
+            vertical-align: middle;
+
+            margin-right: 8px;
+        }
+
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 1100px) {
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media(max-width: 700px) {
+
+            .sidebar {
+                width: 70px;
+
+                padding:
+                    20px 10px;
+            }
+
+
+            .brand {
+                justify-content:
+                    center;
+
+                padding-bottom:
+                    25px;
+            }
+
+
+            .brand-text,
+            .menu-title,
+            .menu a span:not(.menu-icon),
+            .logout button {
+                display: none;
+            }
+
+
+            .menu a {
+                justify-content:
+                    center;
+
+                padding:
+                    14px 5px;
+            }
+
+
+            .main {
+                margin-left: 70px;
+
+                padding:
+                    20px 15px;
+            }
+
+
+            .header-left h1 {
+                font-size: 22px;
+            }
+
+
+            .admin-profile {
+                display: none;
+            }
+
+
+            .stats {
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 10px;
+            }
+
+
+            .stat-card {
+                padding: 15px;
+            }
+
+
+            .stat-card h3 {
+                font-size: 23px;
+            }
+
+        }
+
+
+        @media(max-width: 450px) {
+
+            .stats {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .gender-chart {
+                flex-direction:
+                    column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                A
+            </div>
+
+            <div class="brand-text">
+
+                <h2>
+                    ASTS Admin
+                </h2>
+
+                <p>
+                    Administration Panel
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="menu-title">
+            Menu Utama
+        </div>
+
+
+        <nav class="menu">
+
+            <a
+                href="dashboard.html"
+                class="active"
+            >
+
+                <span class="menu-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a href="index.html">
+
+                <span class="menu-icon">
+                    👥
+                </span>
+
+                <span>
+                    Data User
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="logout">
+
+            <button onclick="logout()">
+                ⇥ &nbsp; Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="header-left">
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Selamat datang di Admin Panel Ujian ASTS
+                </p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>
+                        Administrator
+                    </strong>
+
+                    <span>
+                        Admin
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             STATISTICS
+        ========================= -->
+
+        <section class="stats">
+
+
+            <!-- TOTAL USER -->
+
+            <div class="stat-card">
+
+                <div class="stat-decoration"></div>
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <h3 id="totalUser">
+                    0
+                </h3>
+
+                <p>
+                    Total User
+                </p>
+
+            </div>
+
+
+
+            <!-- LAKI-LAKI -->
+
+            <div class="stat-card">
+
+                <div class="stat-decoration"></div>
+
+                <div class="stat-icon">
+                    ♂
+                </div>
+
+                <h3 id="totalMale">
+                    0
+                </h3>
+
+                <p>
+                    Laki-laki
+                </p>
+
+            </div>
+
+
+
+            <!-- PEREMPUAN -->
+
+            <div class="stat-card">
+
+                <div class="stat-decoration"></div>
+
+                <div class="stat-icon">
+                    ♀
+                </div>
+
+                <h3 id="totalFemale">
+                    0
+                </h3>
+
+                <p>
+                    Perempuan
+                </p>
+
+            </div>
+
+
+
+            <!-- DATA TERDAFTAR -->
+
+            <div class="stat-card">
+
+                <div class="stat-decoration"></div>
+
+                <div class="stat-icon">
+                    ✦
+                </div>
+
+                <h3 id="totalToday">
+                    0
+                </h3>
+
+                <p>
+                    Data Terdaftar
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CONTENT
+        ========================= -->
+
+        <div class="content-grid">
+
+
+            <!-- USER TERBARU -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        User Terbaru
+                    </h2>
+
+                    <span>
+                        Data Terbaru
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Nama
+                                </th>
+
+                                <th>
+                                    NISN
+                                </th>
+
+                                <th>
+                                    Gender
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="userTable">
+
+                            <tr>
+
+                                <td
+                                    colspan="4"
+                                    class="loading"
+                                >
+
+                                    <span class="spinner"></span>
+
+                                    Memuat data...
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- GENDER -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        Statistik Gender
+                    </h2>
+
+                    <span>
+                        Data User
+                    </span>
+
+                </div>
+
+
+                <div class="gender-chart">
+
+
+                    <div
+                        class="circle-chart"
+                        id="genderCircle"
+                        style="--female: 50%"
+                    >
+
+                        <div class="circle-inner">
+
+                            <strong id="genderTotal">
+                                0
+                            </strong>
+
+                            <span>
+                                User
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="legend">
+
+
+                        <div class="legend-item">
+
+                            <div
+                                class="legend-dot dot-pink"
+                            ></div>
+
+                            <span>
+
+                                Perempuan:
+
+                                <strong
+                                    id="femalePercent"
+                                >
+                                    0%
+                                </strong>
+
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="legend-item">
+
+                            <div
+                                class="legend-dot dot-blue"
+                            ></div>
+
+                            <span>
+
+                                Laki-laki:
+
+                                <strong
+                                    id="malePercent"
+                                >
+                                    0%
+                                </strong>
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+
+        <!-- =========================
+             WELCOME
+        ========================= -->
+
+        <section class="welcome">
+
+            <div class="welcome-circle"></div>
+
+            <h2 id="welcomeText">
+                Selamat Datang, Administrator 👋
+            </h2>
+
+            <p>
+                Kelola data peserta ujian ASTS
+                dengan mudah melalui dashboard ini.
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        // ==========================================
+        // CEK LOGIN ADMIN
+        // ==========================================
+
+        if (
+            sessionStorage.getItem(
+                "adminLogin"
+            ) !== "true"
+        ) {
+
+            window.location.href =
+                "login_admin.html";
+
+        }
+
+
+
+        // ==========================================
+        // API
+        // ==========================================
+
+        const API =
+            "http://localhost/ujian_asts/";
+
+
+
+        // ==========================================
+        // NAMA ADMIN
+        // ==========================================
+
+        const adminName =
+            sessionStorage.getItem(
+                "adminName"
+            ) || "Administrator";
+
+
+        const adminProfileName =
+            document.querySelector(
+                ".admin-profile strong"
+            );
+
+
+        if (adminProfileName) {
+
+            adminProfileName.textContent =
+                adminName;
+
+        }
+
+
+        const welcomeText =
+            document.getElementById(
+                "welcomeText"
+            );
+
+
+        if (welcomeText) {
+
+            welcomeText.textContent =
+                "Selamat Datang, " +
+                adminName +
+                " 👋";
+
+        }
+
+
+        const adminAvatar =
+            document.querySelector(
+                ".admin-avatar"
+            );
+
+
+        if (adminAvatar) {
+
+            adminAvatar.textContent =
+                adminName
+                    .charAt(0)
+                    .toUpperCase();
+
+        }
+
+
+
+        // ==========================================
+        // AMBIL SEMUA DATA USER
+        // ==========================================
+
+        async function getAllUsers() {
+
+            let allUsers = [];
+
+            const limit = 100;
+
+            try {
+
+                // Ambil halaman pertama
+
+                const firstResponse =
+                    await fetch(
+                        API +
+                        "data_json.php?page=1&limit=" +
+                        limit
+                    );
+
+
+                if (!firstResponse.ok) {
+
+                    throw new Error(
+                        "API tidak dapat diakses"
+                    );
+
+                }
+
+
+                const firstResult =
+                    await firstResponse.json();
+
+
+                console.log(
+                    "Response API:",
+                    firstResult
+                );
+
+
+                // Ambil data halaman pertama
+
+                if (
+                    Array.isArray(
+                        firstResult.data
+                    )
+                ) {
+
+                    allUsers =
+                        [
+                            ...firstResult.data
+                        ];
+
+                }
+
+
+                // Total halaman
+
+                const totalPages =
+                    Number(
+                        firstResult.totalPages
+                    ) || 1;
+
+
+                // Ambil halaman selanjutnya
+
+                for (
+                    let page = 2;
+                    page <= totalPages;
+                    page++
+                ) {
+
+                    const response =
+                        await fetch(
+                            API +
+                            "data_json.php?page=" +
+                            page +
+                            "&limit=" +
+                            limit
+                        );
+
+
+                    if (!response.ok) {
+
+                        continue;
+
+                    }
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (
+                        Array.isArray(
+                            result.data
+                        )
+                    ) {
+
+                        allUsers =
+                            [
+                                ...allUsers,
+                                ...result.data
+                            ];
+
+                    }
+
+                }
+
+
+                return allUsers;
+
+
+            } catch (error) {
+
+                console.error(
+                    "Error API:",
+                    error
+                );
+
+                throw error;
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // LOAD DASHBOARD
+        // ==========================================
+
+        async function loadDashboard() {
+
+            try {
+
+                const users =
+                    await getAllUsers();
+
+
+                console.log(
+                    "Semua data user:",
+                    users
+                );
+
+
+                renderDashboard(
+                    users
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                document.getElementById(
+                    "userTable"
+                ).innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            style="
+                                text-align:center;
+                                color:#a1a1aa;
+                                padding:25px;
+                            "
+                        >
+
+                            Gagal mengambil data user.
+
+                            <br>
+
+                            <small>
+                                Pastikan Apache dan API
+                                berjalan.
+                            </small>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+
+                document.getElementById(
+                    "totalUser"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "totalMale"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "totalFemale"
+                ).textContent = "0";
+
+
+                document.getElementById(
+                    "totalToday"
+                ).textContent = "0";
+
+            }
+
+        }
+
+
+
+        // ==========================================
+        // RENDER DASHBOARD
+        // ==========================================
+
+        function renderDashboard(
+            users
+        ) {
+
+
+            // Total data
+
+            const total =
+                users.length;
+
+
+            let male = 0;
+
+            let female = 0;
+
+
+
+            // ======================================
+            // HITUNG GENDER
+            // ======================================
+
+            users.forEach(
+                user => {
+
+                    const gender =
+                        String(
+                            user.gender ||
+                            ""
+                        )
+                        .trim()
+                        .toLowerCase();
+
+
+                    if (
+
+                        gender === "male" ||
+
+                        gender === "laki-laki" ||
+
+                        gender === "laki laki" ||
+
+                        gender === "laki_laki"
+
+                    ) {
+
+                        male++;
+
+                    }
+
+
+                    if (
+
+                        gender === "female" ||
+
+                        gender === "perempuan" ||
+
+                        gender === "wanita"
+
+                    ) {
+
+                        female++;
+
+                    }
+
+                }
+            );
+
+
+
+            // ======================================
+            // STATISTIK
+            // ======================================
+
+            document.getElementById(
+                "totalUser"
+            ).textContent =
+                total;
+
+
+            document.getElementById(
+                "totalMale"
+            ).textContent =
+                male;
+
+
+            document.getElementById(
+                "totalFemale"
+            ).textContent =
+                female;
+
+
+            document.getElementById(
+                "totalToday"
+            ).textContent =
+                total;
+
+
+            document.getElementById(
+                "genderTotal"
+            ).textContent =
+                total;
+
+
+
+            // ======================================
+            // PERSENTASE
+            // ======================================
+
+            const malePercent =
+                total > 0
+
+                    ? Math.round(
+                        (male / total) *
+                        100
+                    )
+
+                    : 0;
+
+
+            const femalePercent =
+                total > 0
+
+                    ? Math.round(
+                        (female / total) *
+                        100
+                    )
+
+                    : 0;
+
+
+
+            document.getElementById(
+                "malePercent"
+            ).textContent =
+                malePercent + "%";
+
+
+            document.getElementById(
+                "femalePercent"
+            ).textContent =
+                femalePercent + "%";
+
+
+
+            // ======================================
+            // CHART
+            // ======================================
+
+            document.getElementById(
+                "genderCircle"
+            )
+            .style
+            .setProperty(
+                "--female",
+                femalePercent + "%"
+            );
+
+
+
+            // ======================================
+            // TABLE USER TERBARU
+            // ======================================
+
+            const table =
+                document.getElementById(
+                    "userTable"
+                );
+
+
+            if (
+                users.length === 0
+            ) {
+
+                table.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            style="
+                                text-align:center;
+                                padding:25px;
+                            "
+                        >
+
+                            Belum ada data user
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            // ======================================
+            // URUTKAN USER TERBARU
+            // ======================================
+
+            const latestUsers =
+                [...users]
+
+                    .sort(
+                        (a, b) =>
+
+                            Number(
+                                b.id || 0
+                            )
+
+                            -
+
+                            Number(
+                                a.id || 0
+                            )
+                    )
+
+                    .slice(
+                        0,
+                        6
+                    );
+
+
+
+            // ======================================
+            // TAMPILKAN TABLE
+            // ======================================
+
+            table.innerHTML =
+
+                latestUsers
+
+                    .map(
+                        user => {
+
+                            const gender =
+                                String(
+                                    user.gender ||
+                                    ""
+                                )
+                                .trim()
+                                .toLowerCase();
+
+
+                            const isFemale =
+
+                                gender ===
+                                    "female"
+
+                                ||
+
+                                gender ===
+                                    "perempuan"
+
+                                ||
+
+                                gender ===
+                                    "wanita";
+
+
+                            return `
+
+                                <tr>
+
+                                    <td>
+
+                                        <div
+                                            class="user-name"
+                                        >
+
+                                            ${escapeHTML(
+                                                user.name ||
+                                                "-"
+                                            )}
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        ${escapeHTML(
+                                            user.nisn ||
+                                            user.nis ||
+                                            "-"
+                                        )}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span
+                                            class="gender ${
+                                                isFemale
+                                                    ? "female"
+                                                    : "male"
+                                            }"
+                                        >
+
+                                            ${
+                                                isFemale
+
+                                                    ? "Perempuan"
+
+                                                    : "Laki-laki"
+                                            }
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        ${escapeHTML(
+                                            user.email ||
+                                            "-"
+                                        )}
+
+                                    </td>
+
+                                </tr>
+
+                            `;
+
+                        }
+                    )
+
+                    .join("");
+
+        }
+
+
+
+        // ==========================================
+        // SECURITY
+        // ==========================================
+
+        function escapeHTML(
+            value
+        ) {
+
+            return String(
+                value
+            )
+
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+
+            .replace(
+                /</g,
+                "&lt;"
+            )
+
+            .replace(
+                />/g,
+                "&gt;"
+            )
+
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+        }
+
+
+
+        // ==========================================
+        // LOGOUT
+        // ==========================================
+
+        function logout() {
+
+            const confirmLogout =
+                confirm(
+                    "Apakah kamu yakin ingin logout?"
+                );
+
+
+            if (!confirmLogout) {
+
+                return;
+
+            }
+
+
+            sessionStorage.removeItem(
+                "adminLogin"
+            );
+
+
+            sessionStorage.removeItem(
+                "adminName"
+            );
+
+
+            sessionStorage.removeItem(
+                "adminUsername"
+            );
+
+
+            window.location.href =
+                "login_admin.html";
+
+        }
+
+
+
+        // ==========================================
+        // START
+        // ==========================================
+
+        loadDashboard();
+
+    </script>
+
+
+</body>
+
+</html>
+```

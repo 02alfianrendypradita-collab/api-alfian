@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Data Users | Pink Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    :root {
+        --pink: #ec4899;
+        --pink-dark: #db2777;
+        --pink-light: #fce7f3;
+        --pink-soft: #fff1f7;
+        --white: #ffffff;
+        --text: #2d1b27;
+        --muted: #8b7281;
+        --border: #f4d9e7;
+        --danger: #ef4444;
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        color: var(--text);
+
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(236, 72, 153, 0.20),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 20%,
+                rgba(244, 114, 182, 0.18),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 50% 100%,
+                rgba(251, 207, 232, 0.25),
+                transparent 35%
+            ),
+            #fff7fb;
+
+        padding: 35px 25px;
+        overflow-x: hidden;
+    }
+
+    /* BACKGROUND BLOBS */
+
+    body::before,
+    body::after {
+        content: "";
+        position: fixed;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.35;
+        z-index: -1;
+
+        animation: floating 8s ease-in-out infinite alternate;
+    }
+
+    body::before {
+        background: #f472b6;
+        top: -100px;
+        left: -80px;
+    }
+
+    body::after {
+        background: #ec4899;
+        right: -100px;
+        bottom: -100px;
+        animation-delay: 2s;
+    }
+
+    @keyframes floating {
+        from {
+            transform: translate(0, 0) scale(1);
+        }
+
+        to {
+            transform: translate(30px, 20px) scale(1.15);
+        }
+    }
+
+    .container {
+        max-width: 1500px;
+        margin: auto;
+    }
+
+    /* HEADER */
+
+    .header {
+        position: relative;
+        overflow: hidden;
+
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 25px;
+
+        padding: 25px 30px;
+        margin-bottom: 22px;
+
+        box-shadow:
+            0 20px 50px rgba(190, 24, 93, 0.10),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+        animation: slideDown 0.7s ease;
+    }
+
+    .header::after {
+        content: "";
+
+        position: absolute;
+        width: 180px;
+        height: 180px;
+
+        background: linear-gradient(
+            135deg,
+            #f9a8d4,
+            #ec4899
+        );
+
+        border-radius: 50%;
+        right: -70px;
+        top: -90px;
+
+        opacity: 0.18;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 2;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .logo {
+        width: 65px;
+        height: 65px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 20px;
+
+        color: white;
+        font-size: 28px;
+
+        background: linear-gradient(
+            135deg,
+            #ec4899,
+            #db2777
+        );
+
+        box-shadow:
+            0 12px 30px rgba(236, 72, 153, 0.35);
+
+        animation: logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-6px);
+        }
+    }
+
+    .header h1 {
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.7px;
+    }
+
+    .header h1 span {
+        color: var(--pink);
+    }
+
+    .header p {
+        margin-top: 7px;
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    /* LOGOUT */
+
+    .btn-logout {
+        position: relative;
+        z-index: 5;
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        border: none;
+        cursor: pointer;
+
+        padding: 12px 18px;
+        border-radius: 13px;
+
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 700;
+
+        color: #db2777;
+        background: #fff;
+
+        border: 1px solid #f3b6d3;
+
+        box-shadow: 0 8px 20px rgba(190, 24, 93, 0.08);
+
+        transition: all 0.3s ease;
+    }
+
+    .btn-logout:hover {
+        color: white;
+        background: linear-gradient(
+            135deg,
+            #ec4899,
+            #db2777
+        );
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 12px 25px rgba(236, 72, 153, 0.30);
+    }
+
+    /* TOOLBAR */
+
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 15px;
+        margin-bottom: 18px;
+
+        animation: fadeUp 0.8s ease;
+    }
+
+    #info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(15px);
+
+        border: 1px solid var(--border);
+
+        padding: 12px 18px;
+        border-radius: 14px;
+
+        color: var(--muted);
+        font-size: 13px;
+
+        box-shadow:
+            0 8px 25px rgba(190, 24, 93, 0.08);
+    }
+
+    #info::before {
+        content: "●";
+
+        color: #22c55e;
+        font-size: 10px;
+
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        50% {
+            opacity: 0.4;
+            transform: scale(0.7);
+        }
+    }
+
+    /* BUTTON */
+
+    .btn {
+        border: none;
+        cursor: pointer;
+
+        font-family: inherit;
+        font-weight: 700;
+
+        transition: 0.3s ease;
+    }
+
+    .btn-add {
+        position: relative;
+        overflow: hidden;
+
+        padding: 13px 21px;
+        border-radius: 14px;
+
+        color: white;
+
+        background: linear-gradient(
+            135deg,
+            #ec4899,
+            #db2777
+        );
+
+        box-shadow:
+            0 10px 25px rgba(236, 72, 153, 0.28);
+    }
+
+    .btn-add::before {
+        content: "";
+
+        position: absolute;
+        width: 100%;
+        height: 100%;
+
+        left: -100%;
+        top: 0;
+
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent
+        );
+
+        transition: 0.5s;
+    }
+
+    .btn-add:hover::before {
+        left: 100%;
+    }
+
+    .btn-add:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 15px 30px rgba(236, 72, 153, 0.38);
+    }
+
+    /* TABLE */
+
+    .table-container {
+        background: rgba(255, 255, 255, 0.88);
+
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        border-radius: 22px;
+
+        overflow-x: auto;
+
+        box-shadow:
+            0 20px 50px rgba(190, 24, 93, 0.10);
+
+        animation: fadeUp 0.9s ease;
+    }
+
+    table {
+        width: 100%;
+        min-width: 1100px;
+
+        border-collapse: collapse;
+    }
+
+    th {
+        background: linear-gradient(
+            135deg,
+            #ec4899,
+            #db2777
+        );
+
+        color: white;
+
+        padding: 17px 14px;
+
+        font-size: 12px;
+        font-weight: 800;
+
+        letter-spacing: 0.6px;
+
+        text-align: center;
+    }
+
+    th:first-child {
+        border-radius: 18px 0 0 0;
+    }
+
+    th:last-child {
+        border-radius: 0 18px 0 0;
+    }
+
+    td {
+        padding: 15px 14px;
+
+        border-bottom: 1px solid #f8e5ee;
+
+        font-size: 13px;
+
+        background: rgba(255, 255, 255, 0.65);
+
+        transition: 0.25s ease;
+    }
+
+    tbody tr {
+        animation: rowAppear 0.5s ease both;
+    }
+
+    tbody tr:nth-child(1) {
+        animation-delay: 0.05s;
+    }
+
+    tbody tr:nth-child(2) {
+        animation-delay: 0.10s;
+    }
+
+    tbody tr:nth-child(3) {
+        animation-delay: 0.15s;
+    }
+
+    tbody tr:nth-child(4) {
+        animation-delay: 0.20s;
+    }
+
+    tbody tr:nth-child(5) {
+        animation-delay: 0.25s;
+    }
+
+    tbody tr:hover td {
+        background: #fff0f7;
+        transform: scale(1.002);
+    }
+
+    tbody tr:hover {
+        box-shadow:
+            inset 5px 0 0 var(--pink);
+    }
+
+    td:first-child {
+        color: var(--pink-dark);
+        font-weight: 800;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    /* ACTION BUTTON */
+
+    .btn-edit,
+    .btn-del {
+        padding: 8px 12px;
+
+        border-radius: 9px;
+
+        font-size: 12px;
+        color: white;
+
+        margin: 2px;
+    }
+
+    .btn-edit {
+        background: linear-gradient(
+            135deg,
+            #f9a8d4,
+            #ec4899
+        );
+
+        box-shadow:
+            0 5px 12px rgba(236, 72, 153, 0.2);
+    }
+
+    .btn-del {
+        background: white;
+
+        color: #db2777;
+
+        border: 1px solid #f3b6d3;
+    }
+
+    .btn-edit:hover,
+    .btn-del:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-del:hover {
+        background: #db2777;
+        color: white;
+    }
+
+    /* LOADING */
+
+    .loading {
+        padding: 45px !important;
+
+        text-align: center;
+
+        color: var(--pink);
+        font-weight: 700;
+    }
+
+    .loading::after {
+        content: "";
+
+        display: inline-block;
+
+        width: 18px;
+        height: 18px;
+
+        margin-left: 10px;
+
+        border: 3px solid #fbcfe8;
+        border-top-color: var(--pink);
+
+        border-radius: 50%;
+
+        vertical-align: middle;
+
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* PAGINATION */
+
+    .pagination {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 8px;
+
+        margin-top: 22px;
+
+        flex-wrap: wrap;
+    }
+
+    .pagination button {
+        min-width: 40px;
+
+        padding: 10px 13px;
+
+        border: 1px solid #f3c5da;
+
+        background: rgba(255, 255, 255, 0.85);
+
+        color: var(--pink-dark);
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        font-weight: 700;
+
+        transition: 0.25s ease;
+    }
+
+    .pagination button:hover:not(:disabled) {
+        background: #fce7f3;
+        transform: translateY(-2px);
+    }
+
+    .pagination button.active {
+        color: white;
+
+        border-color: transparent;
+
+        background: linear-gradient(
+            135deg,
+            #ec4899,
+            #db2777
+        );
+
+        box-shadow:
+            0 7px 18px rgba(236, 72, 153, 0.25);
+    }
+
+    .pagination button:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+
+    .pagination .info {
+        color: var(--muted);
+
+        font-size: 12px;
+        font-weight: 600;
+
+        margin-left: 4px;
+    }
+
+    /* FOOTER */
+
+    .footer {
+        text-align: center;
+
+        color: #a78b9a;
+
+        font-size: 12px;
+
+        margin-top: 28px;
+
+        padding-bottom: 10px;
+
+        animation: fadeUp 1s ease;
+    }
+
+    .footer span {
+        color: var(--pink);
+        font-weight: 800;
+    }
+
+    /* ANIMATION */
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-25px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(25px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes rowAppear {
+        from {
+            opacity: 0;
+            transform: translateX(-15px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 768px) {
+
+        body {
+            padding: 18px 12px;
+        }
+
+        .header {
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .header-content {
+            align-items: flex-start;
+        }
+
+        .header-left {
+            align-items: flex-start;
+        }
+
+        .logo {
+            width: 52px;
+            height: 52px;
+
+            font-size: 22px;
+
+            border-radius: 15px;
+        }
+
+        .header h1 {
+            font-size: 21px;
+        }
+
+        .header p {
+            font-size: 12px;
+        }
+
+        .btn-logout {
+            padding: 10px 12px;
+            font-size: 12px;
+        }
+
+        .toolbar {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        #info {
+            justify-content: center;
+        }
+
+        .btn-add {
+            width: 100%;
+        }
+
+        .table-container {
+            border-radius: 18px;
+        }
+    }
+</style>
+
+
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- HEADER -->
+<div class="header">
+
+    <div class="header-content">
+
+        <div class="header-left">
+
+            <div class="logo">
+                ♡
+            </div>
+
+            <div>
+                <h1>
+                    Data <span>Users</span>
+                </h1>
+
+                <p>
+                    Manajemen data pengguna melalui JSON API
+                </p>
+            </div>
+
+        </div>
+
+        <!-- LOGOUT -->
+        <button
+            class="btn-logout"
+            onclick="logout()"
+        >
+            ↪ Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOOLBAR -->
+<div class="toolbar">
+
+    <button
+        class="btn btn-add"
+        onclick="tambahData()"
+    >
+        ＋ Tambah Data
+    </button>
+
+    <span id="info">
+        Memuat data...
+    </span>
+
+</div>
+
+
+<!-- TABLE -->
+<div class="table-container">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th width="70">
+                    NO
+                </th>
+
+                <th>
+                    NAMA
+                </th>
+
+                <th>
+                    NISN
+                </th>
+
+                <th>
+                    TTL
+                </th>
+
+                <th>
+                    GENDER
+                </th>
+
+                <th>
+                    EMAIL
+                </th>
+
+                <th>
+                    ALAMAT
+                </th>
+
+                <th width="160">
+                    AKSI
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="hasil">
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="loading"
+                >
+                    Memuat data...
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- PAGINATION -->
+<div
+    class="pagination"
+    id="pagination"
+></div>
+
+
+<!-- FOOTER -->
+<div class="footer">
+
+    Data Users JSON API
+
+    <br>
+
+    <span>
+        Premium Pink Dashboard
+    </span>
+
+</div>
+
+
+</div>
+
+<script>
+
+/* =====================================================
+   LOGIN CHECK
+===================================================== */
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout() {
+    const yakin = confirm(
+        "Apakah Anda yakin ingin keluar dari dashboard?"
+    );
+
+    if (!yakin) {
+        return;
+    }
+
+    // Hapus status login admin
+    sessionStorage.removeItem("adminLogin");
+
+    // Arahkan ke halaman login admin
+    window.location.href = "login.php";
+}
+
+
+/* =====================================================
+   API
+===================================================== */
+
+const API = "http://localhost/ujian_asts/";
+
+const LIMIT = 10;
+
+let currentPage = 1;
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+function loadData(page = 1) {
+
+    currentPage = page;
+
+    document.getElementById("hasil").innerHTML = `
+        <tr>
+            <td colspan="8" class="loading">
+                Memuat data...
+            </td>
+        </tr>
+    `;
+
+    fetch(
+        `${API}data_json.php?page=${page}&limit=${LIMIT}`
+    )
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Gagal mengambil data"
+                );
+
+            }
+
+            return response.json();
+
+        })
+
+        .then(res => {
+
+            const data = res.data;
+
+            let html = "";
+
+
+            if (data.length === 0) {
+
+                html = `
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="center"
+                        >
+                            Tidak ada data.
+                        </td>
+
+                    </tr>
+                `;
+
+            }
+
+
+            else {
+
+                data.forEach((item, index) => {
+
+                    const nomor =
+                        ((currentPage - 1) * LIMIT)
+                        + index + 1;
+
+
+                    html += `
+
+                        <tr>
+
+                            <td class="center">
+                                ${nomor}
+                            </td>
+
+                            <td>
+                                ${item.name ?? ""}
+                            </td>
+
+                            <td>
+                                ${item.nis ?? item.nisn ?? ""}
+                            </td>
+
+                            <td>
+                                ${item.ttl ?? ""}
+                            </td>
+
+                            <td>
+                                ${item.gender ?? ""}
+                            </td>
+
+                            <td>
+                                ${item.email ?? ""}
+                            </td>
+
+                            <td>
+                                ${item.address ?? ""}
+                            </td>
+
+                            <td class="center">
+
+                                <button
+                                    class="btn btn-edit"
+                                    onclick="editData(${item.id})"
+                                >
+                                    ✎ Edit
+                                </button>
+
+                                <button
+                                    class="btn btn-del"
+                                    onclick="deleteData(${item.id})"
+                                >
+                                    ♡ Hapus
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                });
+
+            }
+
+
+            document.getElementById("hasil")
+                .innerHTML = html;
+
+
+            document.getElementById("info")
+                .innerText =
+                `Total: ${res.total} data | Halaman ${res.page} dari ${res.totalPages}`;
+
+
+            renderPagination(
+                res.page,
+                res.totalPages
+            );
+
+        })
+
+
+        .catch(error => {
+
+            console.error(error);
+
+            document.getElementById("hasil")
+                .innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            style="
+                                color:#db2777;
+                                text-align:center;
+                                padding:30px;
+                                font-weight:700;
+                            "
+                        >
+
+                            ⚠ Gagal mengambil data JSON.
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+        });
+
+}
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+function renderPagination(page, totalPages) {
+
+    const el =
+        document.getElementById("pagination");
+
+    el.innerHTML = "";
+
+
+    if (totalPages <= 1) {
+        return;
+    }
+
+
+    const prev =
+        document.createElement("button");
+
+    prev.innerText = "‹";
+
+    prev.disabled = page <= 1;
+
+    prev.onclick = () =>
+        loadData(page - 1);
+
+    el.appendChild(prev);
+
+
+    for (
+        let i = 1;
+        i <= totalPages;
+        i++
+    ) {
+
+        const btn =
+            document.createElement("button");
+
+        btn.innerText = i;
+
+
+        if (i === page) {
+
+            btn.classList.add("active");
+
+        }
+
+
+        btn.onclick = () =>
+            loadData(i);
+
+
+        el.appendChild(btn);
+
+    }
+
+
+    const next =
+        document.createElement("button");
+
+    next.innerText = "›";
+
+    next.disabled =
+        page >= totalPages;
+
+    next.onclick = () =>
+        loadData(page + 1);
+
+    el.appendChild(next);
+
+
+    const info =
+        document.createElement("span");
+
+    info.className = "info";
+
+    info.innerText =
+        `(${page}/${totalPages})`;
+
+    el.appendChild(info);
+
+}
+
+
+/* =====================================================
+   TAMBAH DATA
+===================================================== */
+
+function tambahData() {
+
+    const name =
+        prompt("Nama:");
+
+    if (!name) {
+        return;
+    }
+
+
+    const nisn =
+        prompt("NISN:");
+
+    const ttl =
+        prompt("TTL:");
+
+    const gender =
+        prompt("Gender (MALE/FEMALE):");
+
+    const email =
+        prompt("Email:");
+
+    const address =
+        prompt("Alamat:");
+
+
+    fetch(API + "tambah.php", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type":
+                "application/json"
+        },
+
+        body: JSON.stringify({
+
+            name: name,
+
+            nisn: nisn,
+
+            ttl: ttl,
+
+            gender: gender,
+
+            email: email,
+
+            address: address
+
+        })
+
+    })
+
+    .then(response =>
+        response.json()
+    )
+
+    .then(result => {
+
+        if (result.status === "ok") {
+
+            alert(
+                "✓ Data berhasil ditambahkan!"
+            );
+
+
+            fetch(
+                `${API}data_json.php?page=1&limit=${LIMIT}`
+            )
+
+            .then(response =>
+                response.json()
+            )
+
+            .then(dataTerbaru => {
+
+                const lastPage =
+                    Math.max(
+                        1,
+                        Number(
+                            dataTerbaru.totalPages
+                        ) || 1
+                    );
+
+
+                loadData(lastPage);
+
+            })
+
+            .catch(() =>
+                loadData(currentPage)
+            );
+
+        }
+
+        else {
+
+            alert(
+                "Gagal menambahkan data: "
+                +
+                (
+                    result.pesan ||
+                    "Periksa koneksi database."
+                )
+            );
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "Terjadi kesalahan saat menambahkan data."
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   EDIT DATA
+===================================================== */
+
+function editData(id) {
+
+    fetch(
+        API + "get_one.php?id=" + id
+    )
+
+    .then(response =>
+        response.json()
+    )
+
+    .then(d => {
+
+        const name =
+            prompt(
+                "Nama:",
+                d.name
+            );
+
+        if (name === null) {
+            return;
+        }
+
+
+        const nisn =
+            prompt(
+                "NISN:",
+                d.nis ?? d.nisn ?? ""
+            );
+
+
+        const ttl =
+            prompt(
+                "TTL:",
+                d.ttl ?? ""
+            );
+
+
+        const gender =
+            prompt(
+                "Gender:",
+                d.gender ?? ""
+            );
+
+
+        const email =
+            prompt(
+                "Email:",
+                d.email ?? ""
+            );
+
+
+        const address =
+            prompt(
+                "Alamat:",
+                d.address ?? ""
+            );
+
+
+        fetch(API + "edit.php", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body: JSON.stringify({
+
+                id: id,
+
+                name: name,
+
+                nisn: nisn,
+
+                ttl: ttl,
+
+                gender: gender,
+
+                email: email,
+
+                address: address
+
+            })
+
+        })
+
+        .then(response =>
+            response.json()
+        )
+
+        .then(result => {
+
+            if (result.status === "ok") {
+
+                alert(
+                    "✓ Data berhasil diubah!\n\n" +
+                    "📱 Notifikasi WhatsApp telah dikirim."
+                );
+
+
+                loadData(currentPage);
+
+            }
+
+            else {
+
+                alert(
+                    "Gagal mengubah data: "
+                    +
+                    (
+                        result.pesan ||
+                        "Periksa koneksi database."
+                    )
+                );
+
+            }
+
+        });
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "Gagal mengambil data pengguna."
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   HAPUS DATA
+===================================================== */
+
+function deleteData(id) {
+
+    if (
+        !confirm(
+            "⚠️ Yakin ingin menghapus data ini?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    fetch(API + "delete.php", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type":
+                "application/json"
+        },
+
+        body: JSON.stringify({
+            id: id
+        })
+
+    })
+
+    .then(response =>
+        response.json()
+    )
+
+    .then(result => {
+
+        console.log(
+            "Hasil delete:",
+            result
+        );
+
+
+        if (result.status === "ok") {
+
+            if (result.whatsapp === true) {
+
+                alert(
+                    "✅ Data berhasil dihapus!\n\n" +
+                    "📱 Notifikasi WhatsApp berhasil dikirim."
+                );
+
+            }
+
+            else {
+
+                alert(
+                    "⚠️ Data berhasil dihapus.\n\n" +
+                    "Tetapi notifikasi WhatsApp gagal/tidak tersedia."
+                );
+
+            }
+
+
+            loadData(currentPage);
+
+        }
+
+        else {
+
+            alert(
+                "❌ Gagal menghapus data!\n\n" +
+                (
+                    result.pesan ||
+                    "Terjadi kesalahan."
+                )
+            );
+
+        }
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        alert(
+            "❌ Terjadi kesalahan saat menghubungi server.\n\n" +
+            error.message
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadData(1);
+
+</script>
+
+</body>
+</html>
